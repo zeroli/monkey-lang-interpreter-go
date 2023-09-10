@@ -11,7 +11,7 @@
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
             "args": [
-                "3 + 4) * 10"
+                "if (3) { 10 }"
             ]
         }
     ]
