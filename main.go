@@ -1,10 +1,12 @@
 package main
 
 import (
-    "fmt"
-    "os"
-    "os/user"
-    "monkey/repl"
+	"fmt"
+	"monkey/lexer"
+	"monkey/parser"
+	"monkey/repl"
+	"os"
+	"os/user"
 )
 
 func main() {
@@ -12,8 +14,15 @@ func main() {
     if err != nil {
         panic(err)
     }
-    fmt.Printf("Hello %s! This is the monkey programming language!\n",
-        user.Username)
-    fmt.Printf("Feel free to type in commands\n")
-    repl.Start(os.Stdin, os.Stdout)
+    if len(os.Args) > 1 {
+        line := os.Args[1]
+		l := lexer.New(line)
+		p := parser.New(l)
+		fmt.Println(p.ParseProgram().String())
+    } else {
+        fmt.Printf("Hello %s! This is the monkey programming language!\n",
+            user.Username)
+        fmt.Printf("Feel free to type in commands\n")
+        repl.Start(os.Stdin, os.Stdout)
+    }
 }
