@@ -210,7 +210,7 @@ func (p *Parser) parseLetStatement() *ast.LetStatement {
 	p.nextToken() // move over the '='
 	stmt.Value = p.parseExpression(LOWEST)
 
-	for !p.curTokenIs(token.SEMICOLON) {
+	if p.peekTokenIs(token.SEMICOLON) {
 		p.nextToken()
 	}
 
@@ -314,7 +314,7 @@ func (p *Parser) parseFunctionLiteral() ast.Expression {
 	if !p.expectPeek(token.LBRACE) {
 		return nil
 	}
-	fl.Body = *p.parseBlockStatement()
+	fl.Body = p.parseBlockStatement()
 	return fl
 }
 

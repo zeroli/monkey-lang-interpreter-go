@@ -11,7 +11,7 @@
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
             "args": [
-                "if (3) { 10 }"
+                "let f = fn (x, y) { x + y }"
             ]
         }
     ]
