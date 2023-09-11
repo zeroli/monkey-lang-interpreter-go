@@ -178,6 +178,7 @@ func (p *Parser) ParseProgram() *ast.Program {
 		for i, e := range p.errors {
 			fmt.Println(i, ">", e)
 		}
+		return nil
 	}
 	return program
 }

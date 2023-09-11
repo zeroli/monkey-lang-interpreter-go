@@ -23,11 +23,12 @@ func Start(in io.Reader, out io.Writer) {
 		line := scanner.Text()
 		l := lexer.New(line)
 		p := parser.New(l)
-		fmt.Println(p.ParseProgram().String())
-		/*
-			for tok := l.NextToken(); tok.Type != token.EOF; tok = l.NextToken() {
-				fmt.Printf("%+v\n", tok)
-			}
-		*/
+		program := p.ParseProgram()
+		if program == nil {
+			continue
+		}
+
+		io.WriteString(out, program.String())
+		io.WriteString(out, "\n")
 	}
 }
