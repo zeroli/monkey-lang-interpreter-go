@@ -168,6 +168,7 @@ type HashPair struct {
 	Value Object
 }
 
+// FIXME: how to handle hash conflict??
 type Hash struct {
 	Pairs map[HashKey]HashPair
 }
@@ -188,6 +189,6 @@ func (h *Hash) Inspect() string {
 	return out.String()
 }
 
-type HashTable interface {
+type Hashable interface {
 	HashKey() HashKey
 }
